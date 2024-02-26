@@ -40,12 +40,14 @@ const numbers = document.querySelectorAll('.number');
 const clear = document.querySelector('#clear');
 
 numbers.forEach(num => num.addEventListener('click', event => {
+    if (display.textContent == "Division by 0 not allowed") {
+        return;
+    }
     if (currNumber === 0) {
         displayValue = event.target.textContent;
     } else {
         displayValue += event.target.textContent;
     }
-    console.log(displayValue);
     display.textContent = displayValue;
     currNumber = parseInt(displayValue);
 }));
@@ -53,6 +55,7 @@ numbers.forEach(num => num.addEventListener('click', event => {
 clear.addEventListener('click', () => {
     prevNumber = 0;
     currNumber = 0;
+    operator = "";
     displayValue = "0";
     display.textContent = displayValue;
 })
@@ -61,7 +64,11 @@ const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('#equals');
 
 operators.forEach(op => op.addEventListener('click', event => {
-    if (operator != "" && operator != "=") {
+    if ((operator == "/" && currNumber == 0) || display.textContent == "Division by 0 not allowed") {
+        display.textContent = "Division by 0 not allowed";
+        return;
+    }
+    if (operator != "") {
         const result = operate(operator, prevNumber, currNumber);
         displayValue = result;
         prevNumber = result;
@@ -75,7 +82,11 @@ operators.forEach(op => op.addEventListener('click', event => {
 }));
 
 equals.addEventListener('click', event => {
-    if (operator != "" && operator != "=") {
+    if ((operator == "/" && currNumber == 0) || display.textContent == "Division by 0 not allowed") {
+        display.textContent = "Division by 0 not allowed";
+        return;
+    }
+    if (operator != "") {
         const result = operate(operator, prevNumber, currNumber);
         displayValue = result;
         prevNumber = result;
@@ -85,16 +96,3 @@ equals.addEventListener('click', event => {
     } 
     display.textContent = displayValue;
 });
-
-/*
-const sum = document.querySelector('#plus');
-
-sum.addEventListener('click', event => {
-    const result = operate(event.target.textContent, prevNumber, currNumber);
-    prevNumber = result;
-    currNumber = 0;
-    displayValue = result;
-    display.textContent = displayValue;
-    operator = event.target.textContent;
-})
-*/
