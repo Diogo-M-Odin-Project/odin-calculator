@@ -61,7 +61,7 @@ const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('#equals');
 
 operators.forEach(op => op.addEventListener('click', event => {
-    if (operator != "" || operator != "=") {
+    if (operator != "") {
         const result = operate(operator, prevNumber, currNumber);
         displayValue = result;
         prevNumber = result;
@@ -75,7 +75,7 @@ operators.forEach(op => op.addEventListener('click', event => {
 }));
 
 equals.addEventListener('click', event => {
-    if (operator != "" || operator != "=") {
+    if (operator != "") {
         const result = operate(operator, prevNumber, currNumber);
         displayValue = result;
         prevNumber = result;
@@ -85,7 +85,7 @@ equals.addEventListener('click', event => {
         prevNumber = currNumber;
     } 
     display.textContent = displayValue;
-    operator = "=";
+    operator = "";
 })
 
 /*
