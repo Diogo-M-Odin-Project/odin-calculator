@@ -1,9 +1,4 @@
 
-body {
-    justify-content: center;
-    align-items: center;
-}
-
 .calculator {
     display: flex;
     flex-direction: column;
@@ -11,14 +6,13 @@ body {
     color: aliceblue;
     margin: auto;
     width: 800px;
-    height: 800px;
-
+    padding: 16px;
+    gap: 8px;
 }
 
 #display {
     background-color: white;
     color: black;
-    margin: 8px;
     padding: 16px;
     font-size: 32px;
     text-align: right;
@@ -29,8 +23,9 @@ body {
     display: flex;
     width: 800px;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     padding: 0px;
+    margin: 0px;
 }
 
 .line {
@@ -46,4 +41,21 @@ body {
     font-weight: bold;
     margin: 0px;
     text-align: center;
+}
+
+.number {
+    background-color: #b9b8b8;
+}
+
+.operator {
+    background-color: aqua;
+}
+
+#equals {
+    background-color: brown;
+}
+
+#clear {
+    background-color: black;
+    color: #ffffff;
 }
