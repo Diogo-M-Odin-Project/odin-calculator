@@ -2,6 +2,7 @@
 let prevNumber = 0;
 let currNumber = 0;
 let operator = "";
+//let lastOperation = "";
 
 function add(a, b) {
     return a + b;
@@ -35,7 +36,8 @@ function operate(op, num1, num2) {
     }
 }
 
-const display = document.querySelector('#display');
+const display = document.querySelector('#currValue');
+const prevOp = document.querySelector('#prevOp');
 const numbers = document.querySelectorAll('.number');
 const clear = document.querySelector('#clear');
 
@@ -54,7 +56,44 @@ clear.addEventListener('click', () => {
     prevNumber = 0;
     currNumber = 0;
     displayValue = "0";
+    //lastOperation = "";
     display.textContent = displayValue;
+    //prevOp.textContent = lastOperation;
+})
+
+const operators = document.querySelectorAll('.operator');
+const equals = document.querySelector('#equals');
+
+operators.forEach(op => op.addEventListener('click', event => {
+    if (operator != "" || operator != "=") {
+        const result = operate(operator, prevNumber, currNumber);
+        displayValue = result;
+        prevNumber = result;
+    } else {
+        displayValue = currNumber;
+        prevNumber = currNumber;
+    }
+    currNumber = 0;
+    display.textContent = displayValue;
+    operator = event.target.textContent;
+    /*
+    console.log(prevNumber);
+    prevOp.textContent = prevNumber.toString() + " " + operator;
+    */
+}));
+
+equals.addEventListener('click', event => {
+    if (operator != "" || operator != "=") {
+        const result = operate(operator, prevNumber, currNumber);
+        displayValue = result;
+        prevNumber = result;
+        currNumber = 0;
+    }  else /* if (currNumber != 0) */ {
+        displayValue = currNumber;
+        prevNumber = currNumber;
+    } 
+    display.textContent = displayValue;
+    operator = "=";
 })
 
 /*

@@ -15,13 +15,18 @@ body {
 
 }
 
-#display {
+.display {
     background-color: white;
     color: black;
     margin: 8px;
     padding: 16px;
     font-size: 32px;
     text-align: right;
+}
+
+#prevOp {
+    font-size: 16px;
+    height: 20px;
 }
 
 
